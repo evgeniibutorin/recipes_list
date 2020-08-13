@@ -1,7 +1,34 @@
 <html>
 <body>
+    <div>
+        <form action="/logout" method="post">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form></div>
 
-<div>{{some}}</div>
+<div>
+    <form method="post" action="/newRecipe">
+        <input type="text" name="name" placeholder="Введите название блюда"/>
+        <input type="text" name="description" placeholder="Введите рецепт блюда"/>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+<div>Список рецептов</div>
+<form method="post" action="/filter">
+    <input type="text" name="filter">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+    <button type="submit">Найти</button>
+</form>
+{{#recipes}}
+    <div>
+        <b>{{id}}</b>
+    <b>{{name}}</b>
+    <b>{{description}}</b>
+    </div>
+
+{{/recipes}}
 
 
 </body>
